@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aegis Sentinel — Public Showcase</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071019;
+      --panel: rgba(15, 28, 43, .92);
+      --panel-2: #0b1725;
+      --border: #263d56;
+      --text: #ecf5ff;
+      --muted: #9bb0c5;
+      --cyan: #4bd2e8;
+      --blue: #5c86ff;
+      --green: #61d59d;
+      --amber: #f4c96b;
+      --red: #ff7d87;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(45, 117, 164, .22), transparent 34rem),
+        radial-gradient(circle at 88% 2%, rgba(62, 89, 210, .18), transparent 30rem),
+        linear-gradient(160deg, #040a11, var(--bg));
+      min-height: 100vh;
+    }
+    a { color: var(--cyan); }
+    main { max-width: 1180px; margin: auto; padding: 42px 20px 72px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr); gap: 22px; align-items: stretch; }
+    .hero-copy, .panel, .scenario, .metric, .observation {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(0,0,0,.23);
+    }
+    .hero-copy { border-radius: 24px; padding: 30px; }
+    h1 { font-size: clamp(36px, 6vw, 68px); line-height: .98; letter-spacing: -.045em; margin: 16px 0; }
+    h2 { margin: 0 0 10px; letter-spacing: -.02em; }
+    h3 { margin: 0 0 8px; }
+    p { line-height: 1.6; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #37647a; background: rgba(33, 101, 123, .18); border-radius: 999px; padding: 7px 11px; font-size: 13px; color: #bfeef5; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 16px var(--cyan); }
+    .lede { max-width: 760px; color: #bfd0df; font-size: 17px; }
+    .scope-card { border-radius: 24px; padding: 24px; background: linear-gradient(155deg, rgba(17,37,57,.96), rgba(10,21,34,.96)); border: 1px solid var(--border); }
+    .scope-card ul { padding-left: 20px; color: var(--muted); line-height: 1.65; }
+    .scope-card strong { color: var(--text); }
+    .architecture { margin: 22px 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+    .stage { padding: 13px 8px; text-align: center; border-radius: 12px; border: 1px solid var(--border); background: rgba(9, 21, 34, .88); font-size: 12px; color: #c4d6e5; position: relative; }
+    .stage:not(:last-child)::after { content: "›"; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--cyan); font-size: 20px; z-index: 2; }
+    .panel { border-radius: 20px; padding: 22px; margin-top: 20px; }
+    .muted { color: var(--muted); }
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .scenario { border-radius: 16px; padding: 18px; display: flex; flex-direction: column; }
+    .scenario p { color: var(--muted); flex: 1; }
+    .route-chip, .status { display: inline-block; border-radius: 999px; padding: 6px 10px; font-weight: 750; font-size: 12px; letter-spacing: .025em; }
+    .route-chip { background: #0a2030; color: #b8e8f2; border: 1px solid #27506b; }
+    button, input {
+      width: 100%; border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
+      color: var(--text); background: #091522; font: inherit;
+    }
+    button { cursor: pointer; border: 0; background: linear-gradient(95deg, #3a72e8, #23b6d0); font-weight: 800; transition: transform .16s ease, filter .16s ease; }
+    button:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    button:disabled { cursor: wait; opacity: .55; transform: none; }
+    .secondary { background: #112437; border: 1px solid #31506d; }
+    .upload-grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
+    label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 7px; }
+    .upload-grid button { width: 180px; }
+    .hidden { display: none !important; }
+    .result-head { display: flex; gap: 18px; justify-content: space-between; align-items: start; flex-wrap: wrap; }
+    .result-head h2 { font-size: 30px; }
+    .status.pass { background: rgba(97,213,157,.14); color: var(--green); border: 1px solid rgba(97,213,157,.34); }
+    .status.review { background: rgba(244,201,107,.14); color: var(--amber); border: 1px solid rgba(244,201,107,.34); }
+    .status.stop { background: rgba(255,125,135,.14); color: var(--red); border: 1px solid rgba(255,125,135,.34); }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+    .metric { border-radius: 14px; padding: 15px; background: var(--panel-2); }
+    .metric span { color: var(--muted); font-size: 12px; }
+    .metric strong { display: block; margin-top: 5px; font-size: 22px; word-break: break-word; }
+    .observations { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .observation { border-radius: 16px; overflow: hidden; background: #091522; }
+    .observation img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--border); }
+    .observation-body { padding: 15px; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 12px 0; }
+    .mini { border-radius: 10px; background: #07111c; padding: 10px; border: 1px solid #20364c; }
+    .mini small { color: var(--muted); display: block; }
+    .detections { display: flex; gap: 7px; flex-wrap: wrap; }
+    .detection { border: 1px solid #2d536c; background: #0b2635; border-radius: 999px; padding: 6px 9px; font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { text-align: left; padding: 11px 10px; border-bottom: 1px solid #23384e; vertical-align: top; }
+    th { color: var(--muted); font-size: 12px; }
+    td { font-size: 14px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #c9eff5; }
+    pre { background: #03080e; border: 1px solid #20364d; padding: 15px; border-radius: 12px; max-height: 520px; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .action-row button { width: auto; min-width: 190px; }
+    .notice { border-left: 3px solid var(--cyan); background: rgba(31,87,107,.15); padding: 12px 14px; color: #bdd9e3; border-radius: 0 10px 10px 0; }
+    footer { margin-top: 26px; text-align: center; color: #71889c; font-size: 13px; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .architecture { grid-template-columns: repeat(2, 1fr); }
+      .stage::after { display: none; }
+      .scenario-grid, .metrics { grid-template-columns: 1fr; }
+      .upload-grid { grid-template-columns: 1fr; }
+      .upload-grid button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Recruiter-facing source-available edition</span>
+      <h1>Aegis Sentinel</h1>
+      <p class="lede">A governed-vision showcase that refuses unsafe automation, separates conflicting evidence from low confidence, persists canonical decision evidence, and verifies that a stored decision can be replayed without hiding tampering.</p>
+      <p class="notice"><strong>Scope:</strong> this repository executes a deliberately simplified public policy and controlled synthetic-fixture adapter. The full private implementation’s real-model integration, calibration corpus, complete policy library, advanced reliability modules, and full validation harness are not included.</p>
+    </div>
+    <aside class="scope-card">
+      <h2>What this demo proves</h2>
+      <ul>
+        <li><strong>Fail closed:</strong> bad image evidence stops before detection.</li>
+        <li><strong>Conflict aware:</strong> independent-source disagreement escalates.</li>
+        <li><strong>Auditable:</strong> ordered rules explain every route.</li>
+        <li><strong>Replayable:</strong> evidence is sealed with SHA-256 and re-evaluated.</li>
+        <li><strong>Tamper evident:</strong> a one-byte change blocks replay.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <div class="architecture" aria-label="Public showcase pipeline">
+    <div class="stage">Image intake</div><div class="stage">Integrity gate</div><div class="stage">Fixture evidence</div><div class="stage">Consensus</div><div class="stage">Trust gate</div><div class="stage">Governance route</div><div class="stage">Evidence seal</div>
+  </div>
+
+  <section class="panel">
+    <h2>Run a controlled scenario</h2>
+    <p class="muted">Each scenario executes the Java backend and writes a real evidence package under <code>runtime/evidence</code>.</p>
+    <div class="scenario-grid">
+      <article class="scenario">
+        <span class="route-chip">Expected: AUTO_EXECUTE</span>
+        <h3>Corroborated evidence</h3>
+        <p>Two synthetic sources agree, pass image integrity, and satisfy the illustrative public trust gate.</p>
+        <button data-scenario="trusted">Run trusted scenario</button>
+      </article>
+      <article class="scenario">
+        <span class="route-chip">Expected: ESCALATE</span>
+        <h3>Source conflict</h3>
+        <p>The second source introduces a spill and blocked exit, so automation cannot silently choose a source.</p>
+        <button data-scenario="conflict">Run conflict scenario</button>
+      </article>
+      <article class="scenario">
+        <span class="route-chip">Expected: REJECT</span>
+        <h3>Integrity failure</h3>
+        <p>A heavily blurred frame is rejected before detection evidence is accepted or governance can automate.</p>
+        <button data-scenario="rejected">Run rejected scenario</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Try a custom image</h2>
+    <p class="muted">Custom uploads receive real image-integrity analysis. Because the private real-model adapter is intentionally absent, unknown images fail closed to human review instead of receiving fabricated detections.</p>
+    <div class="upload-grid">
+      <div><label for="sourceId">Source ID</label><input id="sourceId" value="manual-recruiter-demo"></div>
+      <div><label for="upload">PNG or JPEG, up to 10 MB</label><input id="upload" type="file" accept="image/png,image/jpeg"></div>
+      <button id="analyzeUpload">Analyze upload</button>
+    </div>
+  </section>
+
+  <section id="result" class="panel hidden">
+    <div class="result-head">
+      <div><span id="statusBadge" class="status"></span><h2 id="resultTitle"></h2><p id="reasons" class="muted"></p></div>
+      <code id="analysisId"></code>
+    </div>
+    <div id="metrics" class="metrics"></div>
+  </section>
+
+  <section id="sourcesPanel" class="panel hidden">
+    <h2>Source evidence</h2>
+    <div id="observations" class="observations"></div>
+  </section>
+
+  <section id="tracePanel" class="panel hidden">
+    <h2>Ordered governance trace</h2>
+    <div id="trace"></div>
+  </section>
+
+  <section id="evidencePanel" class="panel hidden">
+    <h2>Evidence integrity and replay</h2>
+    <p class="muted">The backend persisted canonical JSON plus a protected replay snapshot. These actions read that stored package.</p>
+    <div class="action-row">
+      <button id="replay">Replay stored decision</button>
+      <button id="tamper" class="secondary">Simulate one-byte tamper</button>
+    </div>
+    <pre id="evidenceOutput">Run an action to inspect the result.</pre>
+  </section>
+
+  <section id="jsonPanel" class="panel hidden">
+    <details>
+      <summary><strong>Complete JSON response</strong></summary>
+      <pre id="json"></pre>
+    </details>
+  </section>
+
+  <footer>Copyright © 2026 Edgar Fu. Evaluation use only. This is not an open-source release.</footer>
+</main>
+<script>
+  const $ = id => document.getElementById(id);
+  let activeResult = null;
+  document.querySelectorAll('[data-scenario]').forEach(button => button.addEventListener('click', () => runScenario(button)));
+  $('analyzeUpload').addEventListener('click', runUpload);
+  $('replay').addEventListener('click', () => evidenceAction('replay'));
+  $('tamper').addEventListener('click', () => evidenceAction('tamper-check'));
+
+  async function runScenario(button) {
+    await busy(button, async () => {
+      const response = await fetch('/api/scenarios/' + button.dataset.scenario, { method: 'POST' });
+      render(await readJson(response));
+    });
+  }
+
+  async function runUpload() {
+    const button = $('analyzeUpload');
+    const file = $('upload').files[0];
+    if (!file) return showError('Choose a PNG or JPEG first.');
+    await busy(button, async () => {
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': file.type || 'application/octet-stream', 'X-Source-Id': $('sourceId').value, 'X-Filename': file.name },
+        body: await file.arrayBuffer()
+      });
+      render(await readJson(response));
+    });
+  }
+
+  async function evidenceAction(action) {
+    if (!activeResult) return;
+    const button = action === 'replay' ? $('replay') : $('tamper');
+    await busy(button, async () => {
+      const response = await fetch(`/api/evidence/${activeResult.evidenceId}/${action}`, { method: 'POST' });
+      $('evidenceOutput').textContent = JSON.stringify(await readJson(response), null, 2);
+    });
+  }
+
+  function render(data) {
+    activeResult = data;
+    const decision = data.decision;
+    const badge = $('statusBadge');
+    badge.className = 'status ' + (decision.governanceStatus === 'PASS' ? 'pass' : decision.governanceStatus === 'REVIEW' ? 'review' : 'stop');
+    badge.textContent = decision.governanceStatus;
+    $('resultTitle').textContent = decision.finalRoute;
+    $('reasons').textContent = decision.reasons.join(' · ');
+    $('analysisId').textContent = data.analysisId;
+    $('metrics').innerHTML = [
+      ['Trust score', decision.trustScore.toFixed(3)],
+      ['Consensus', decision.consensusStatus],
+      ['Evidence ID', data.evidenceId],
+      ['Public policy', data.publicPolicyVersion]
+    ].map(([label, value]) => `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
+
+    $('observations').innerHTML = data.observations.map(obs => {
+      const image = ['trusted_source_a.png','trusted_source_b.png','conflict_source_b.png','rejected_blur.png'].includes(obs.fileName)
+        ? `<img src="/sample_images/${encodeURIComponent(obs.fileName)}" alt="${escapeHtml(obs.fileName)}">` : '';
+      const detections = obs.detections.length
+        ? obs.detections.map(d => `<span class="detection">${escapeHtml(d.label)} ${(d.calibratedConfidence * 100).toFixed(0)}%</span>`).join('')
+        : '<span class="muted">No public detector evidence accepted.</span>';
+      return `<article class="observation">${image}<div class="observation-body"><h3>${escapeHtml(obs.sourceId)}</h3><p class="muted">${escapeHtml(obs.fileName)} · ${escapeHtml(obs.detectorMode)}</p><div class="mini-grid"><div class="mini"><small>Integrity</small><strong>${escapeHtml(obs.integrity.status)}</strong></div><div class="mini"><small>Score</small><strong>${obs.integrity.score.toFixed(2)}</strong></div><div class="mini"><small>Sharpness</small><strong>${obs.integrity.metrics.sharpness.toFixed(2)}</strong></div><div class="mini"><small>Dimensions</small><strong>${obs.integrity.metrics.width}×${obs.integrity.metrics.height}</strong></div></div><div class="detections">${detections}</div></div></article>`;
+    }).join('');
+
+    $('trace').innerHTML = `<table><thead><tr><th>#</th><th>Rule</th><th>Outcome</th><th>Explanation</th></tr></thead><tbody>${decision.trace.map(step => `<tr><td>${step.order}</td><td><code>${escapeHtml(step.rule)}</code></td><td>${escapeHtml(step.outcome)}</td><td>${escapeHtml(step.detail)}</td></tr>`).join('')}</tbody></table>`;
+    $('evidenceOutput').textContent = `Evidence: ${data.evidencePath}\nSHA-256: ${data.evidenceSha256}`;
+    $('json').textContent = JSON.stringify(data, null, 2);
+    ['result','sourcesPanel','tracePanel','evidencePanel','jsonPanel'].forEach(id => $(id).classList.remove('hidden'));
+    $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function busy(button, work) {
+    const original = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Running…';
+    try { await work(); } catch (error) { showError(error.message || String(error)); }
+    finally { button.disabled = false; button.textContent = original; }
+  }
+
+  async function readJson(response) {
+    const data = await response.json().catch(() => ({ message: 'The server returned an unreadable response.' }));
+    if (!response.ok) throw new Error(data.message || `Request failed (${response.status})`);
+    return data;
+  }
+
+  function showError(message) { window.alert(message); }
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  }
+</script>
+</body>
+</html>

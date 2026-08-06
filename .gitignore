@@ -1,0 +1,31 @@
+# Java build output
+/build/
+/target/
+*.class
+*.jar
+
+# Generated runtime evidence
+/runtime/evidence/*
+!/runtime/evidence/.gitkeep
+
+# Logs and local environment
+*.log
+.env
+.env.*
+!.env.example
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+~*

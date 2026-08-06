@@ -1,0 +1,26 @@
+{
+  "conflict_source_b.png": {
+    "sha256": "74a9ae723168351dfe6a11d6a7c2eaf70c7ae93dde82c1d55b825adef3a7c58a",
+    "bytes": 7808,
+    "width": 960,
+    "height": 540
+  },
+  "rejected_blur.png": {
+    "sha256": "4ac861e789c1aa04820734ac5044779a69cb3d2bc6424a9d0e6592331d8e19f5",
+    "bytes": 102184,
+    "width": 960,
+    "height": 540
+  },
+  "trusted_source_a.png": {
+    "sha256": "7ad0e7c0aad079f4e2ff8823740ae2cf68249cdff700f00cbdb2d0469959fc06",
+    "bytes": 6238,
+    "width": 960,
+    "height": 540
+  },
+  "trusted_source_b.png": {
+    "sha256": "a33d06ab6a4a2653e4b906e9e14245362482af8ffe9141e535ac5dcc1ec2a8b3",
+    "bytes": 6237,
+    "width": 960,
+    "height": 540
+  }
+}

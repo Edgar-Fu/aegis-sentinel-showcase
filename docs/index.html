@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aegis Sentinel recruiter-facing governed-vision engineering showcase by Edgar Fu.">
+  <title>Aegis Sentinel — Governed Vision Showcase</title>
+  <style>
+    :root { color-scheme: dark; --bg:#061019; --panel:#0d1a29; --border:#263d55; --text:#edf6ff; --muted:#9db2c7; --cyan:#49d1e7; --blue:#5a83ff; --green:#5ed49a; --amber:#f2c66b; --red:#ff7a84; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 15% 0,rgba(42,112,150,.25),transparent 34rem),radial-gradient(circle at 90% 7%,rgba(73,84,190,.18),transparent 30rem),linear-gradient(160deg,#03080e,var(--bg)); }
+    main { max-width:1120px; margin:auto; padding:50px 20px 76px; }
+    a { color:inherit; text-decoration:none; }
+    .hero { min-height:520px; display:flex; flex-direction:column; justify-content:center; }
+    .eyebrow { align-self:flex-start; border:1px solid #32617a; border-radius:999px; padding:7px 11px; color:#bcecf4; background:rgba(25,91,113,.18); font-size:13px; }
+    h1 { font-size:clamp(46px,9vw,96px); letter-spacing:-.06em; line-height:.92; margin:20px 0; max-width:900px; }
+    h2 { font-size:clamp(26px,4vw,42px); letter-spacing:-.035em; margin:0 0 10px; }
+    h3 { margin:0 0 8px; }
+    p { line-height:1.65; }
+    .lede { max-width:780px; color:#c1d1df; font-size:19px; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .button { display:inline-block; border-radius:11px; padding:12px 16px; font-weight:800; background:linear-gradient(95deg,#3b6fe5,#25b8d0); }
+    .button.secondary { background:#102237; border:1px solid #31516d; }
+    .scope { margin-top:24px; max-width:850px; border-left:3px solid var(--cyan); background:rgba(28,79,97,.17); border-radius:0 10px 10px 0; padding:13px 15px; color:#bed7e2; }
+    .section { margin-top:32px; border:1px solid var(--border); border-radius:22px; background:rgba(13,26,41,.9); padding:25px; box-shadow:0 18px 48px rgba(0,0,0,.22); }
+    .pipeline { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-top:18px; }
+    .stage { border:1px solid var(--border); background:#081522; border-radius:11px; padding:13px 8px; text-align:center; font-size:12px; color:#c2d5e4; }
+    .scenario-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:17px; }
+    .scenario { border:1px solid var(--border); background:#091623; border-radius:15px; padding:18px; }
+    .scenario p { color:var(--muted); min-height:92px; }
+    .scenario button { width:100%; border:0; border-radius:10px; padding:11px; font:inherit; font-weight:800; color:white; background:#183551; cursor:pointer; }
+    .scenario button:hover { filter:brightness(1.14); }
+    .preview { margin-top:16px; border:1px solid #28455f; background:#03090f; border-radius:14px; padding:18px; }
+    .preview-head { display:flex; align-items:center; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .badge { border-radius:999px; padding:6px 10px; font-size:12px; font-weight:850; }
+    .pass { color:var(--green); background:rgba(94,212,154,.14); border:1px solid rgba(94,212,154,.35); }
+    .review { color:var(--amber); background:rgba(242,198,107,.14); border:1px solid rgba(242,198,107,.35); }
+    .stop { color:var(--red); background:rgba(255,122,132,.14); border:1px solid rgba(255,122,132,.35); }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
+    .metric { border:1px solid #20384e; background:#08131f; border-radius:11px; padding:12px; }
+    .metric small { color:var(--muted); display:block; }
+    .metric strong { display:block; margin-top:5px; font-size:20px; }
+    .trace { margin:15px 0 0; padding-left:22px; color:#bfd1df; line-height:1.7; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .card { border:1px solid var(--border); border-radius:14px; padding:17px; background:#091522; }
+    .card ul { padding-left:19px; color:var(--muted); line-height:1.65; }
+    code { color:#c9f0f6; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+    footer { text-align:center; color:#72899d; margin-top:30px; font-size:13px; }
+    @media (max-width:850px) { .pipeline{grid-template-columns:repeat(2,1fr)} .scenario-grid,.metrics,.grid2{grid-template-columns:1fr} .scenario p{min-height:0} }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <span class="eyebrow">Edgar Fu · Java 17 · Responsible AI Engineering</span>
+    <h1>Vision that knows when not to act.</h1>
+    <p class="lede">Aegis Sentinel separates perception from governance. It measures source quality, preserves conflict, refuses unsafe automation, and records decision evidence that can be checked and replayed.</p>
+    <div class="actions">
+      <a class="button" href="https://github.com/Edgar-Fu/aegis-sentinel-showcase">Inspect and run the code</a>
+      <a class="button secondary" href="#preview">Open guided preview</a>
+    </div>
+    <p class="scope"><strong>Public showcase boundary:</strong> this page and repository demonstrate a deliberately simplified, recruiter-facing execution layer. The complete private implementation's real-model adapter, calibration corpus, full policy library, advanced reliability modules, and full validation harness remain private.</p>
+  </section>
+
+  <section class="section">
+    <h2>Public execution path</h2>
+    <p style="color:var(--muted)">The local Java demo performs this path and persists evidence files. The preview below is static and explanatory; clone the repository to execute the backend.</p>
+    <div class="pipeline">
+      <div class="stage">Image intake</div><div class="stage">Integrity gate</div><div class="stage">Controlled evidence</div><div class="stage">Consensus</div><div class="stage">Trust gate</div><div class="stage">Governance route</div><div class="stage">Evidence replay</div>
+    </div>
+  </section>
+
+  <section class="section" id="preview">
+    <h2>Guided scenario preview</h2>
+    <p style="color:var(--muted)">Choose a scenario to see the decision behavior demonstrated by the executable repository.</p>
+    <div class="scenario-grid">
+      <article class="scenario"><h3>Corroborated evidence</h3><p>Two synthetic camera sources agree and pass the public integrity and trust gates.</p><button data-case="trusted">Preview AUTO_EXECUTE</button></article>
+      <article class="scenario"><h3>Source conflict</h3><p>A second source introduces a spill and blocked exit; disagreement cannot be averaged away.</p><button data-case="conflict">Preview ESCALATE</button></article>
+      <article class="scenario"><h3>Integrity failure</h3><p>A blurred frame is rejected before detector evidence is accepted.</p><button data-case="rejected">Preview REJECT</button></article>
+    </div>
+    <div class="preview">
+      <div class="preview-head"><div><span id="badge" class="badge pass">PASS</span><h3 id="route" style="font-size:30px;margin-top:10px">AUTO_EXECUTE</h3></div><code id="scenario">trusted</code></div>
+      <div class="metrics"><div class="metric"><small>Consensus</small><strong id="consensus">AGREEMENT</strong></div><div class="metric"><small>Sources</small><strong id="sources">2</strong></div><div class="metric"><small>Evidence</small><strong>SHA-256</strong></div><div class="metric"><small>Replay</small><strong id="replay">MATCH</strong></div></div>
+      <ol id="trace" class="trace"><li>Input decoded</li><li>Both sources passed integrity</li><li>Controlled evidence was present</li><li>Source labels agreed</li><li>Public trust threshold passed</li><li>Route selected: AUTO_EXECUTE</li><li>Evidence sealed for replay</li></ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What reviewers can inspect</h2>
+    <div class="grid2">
+      <div class="card"><h3>Published</h3><ul><li>Runnable Java execution layer</li><li>Image quality measurements</li><li>Multi-source controlled scenarios</li><li>Fail-closed route selection</li><li>Ordered decision trace</li><li>Canonical evidence and checksums</li><li>Exact public-policy replay</li><li>18 deterministic checks</li></ul></div>
+      <div class="card"><h3>Retained privately</h3><ul><li>Real-model adapter and runtime</li><li>Complete calibration assets</li><li>Advanced tracking and consensus</li><li>Full policy thresholds and precedence</li><li>Complete human-review workflow</li><li>Production-depth evidence/export internals</li><li>Internal evaluation corpora</li><li>Full regression and release harness</li></ul></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Run the actual backend</h2>
+    <div class="grid2">
+      <div class="card"><h3>Windows</h3><p><code>powershell -ExecutionPolicy Bypass -File .\scripts\verify.ps1</code></p><p><code>powershell -ExecutionPolicy Bypass -File .\scripts\run.ps1</code></p></div>
+      <div class="card"><h3>macOS / Linux</h3><p><code>./scripts/verify.sh</code></p><p><code>./scripts/run.sh</code></p></div>
+    </div>
+    <p style="color:var(--muted)">Then open <code>http://localhost:8080</code>. No Maven, database, API key, model download, or external service is required.</p>
+  </section>
+
+  <footer>Copyright © 2026 Edgar Fu · Source available for evaluation · Not an open-source release</footer>
+</main>
+<script>
+  const cases={
+    trusted:{status:'PASS',route:'AUTO_EXECUTE',consensus:'AGREEMENT',sources:'2',replay:'MATCH',cls:'pass',trace:['Input decoded','Both sources passed integrity','Controlled evidence was present','Source labels agreed','Public trust threshold passed','Route selected: AUTO_EXECUTE','Evidence sealed for replay']},
+    conflict:{status:'REVIEW',route:'ESCALATE',consensus:'CONFLICT',sources:'2',replay:'MATCH',cls:'review',trace:['Input decoded','Both sources passed integrity','Controlled evidence was present','Safety-critical source conflict detected','Trust gate cannot weaken conflict','Route selected: ESCALATE','Evidence sealed for replay']},
+    rejected:{status:'STOP',route:'REJECT',consensus:'NOT_EVALUATED',sources:'1',replay:'MATCH',cls:'stop',trace:['Input decoded','Sharpness gate failed: BLUR','Detector evidence skipped','Consensus not evaluated','Trust cannot override integrity','Route selected: REJECT','Evidence sealed for replay']}
+  };
+  document.querySelectorAll('[data-case]').forEach(button=>button.addEventListener('click',()=>render(button.dataset.case)));
+  function render(name){const d=cases[name],b=document.getElementById('badge');b.textContent=d.status;b.className='badge '+d.cls;document.getElementById('route').textContent=d.route;document.getElementById('scenario').textContent=name;document.getElementById('consensus').textContent=d.consensus;document.getElementById('sources').textContent=d.sources;document.getElementById('replay').textContent=d.replay;document.getElementById('trace').innerHTML=d.trace.map(x=>`<li>${x}</li>`).join('');}
+</script>
+</body>
+</html>

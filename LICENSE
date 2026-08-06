@@ -1,0 +1,75 @@
+AEGIS SENTINEL PUBLIC SHOWCASE EVALUATION LICENSE 1.0
+
+Copyright (c) 2026 Edgar Fu. All rights reserved.
+
+1. Limited permission
+
+Subject to all terms below, the copyright holder grants you a limited,
+non-exclusive, non-transferable, revocable permission to:
+
+(a) view this repository;
+(b) clone or download an unmodified copy; and
+(c) compile and execute that copy locally,
+
+solely for one or both of these purposes:
+
+(i) evaluating Edgar Fu's skills, experience, or suitability for employment,
+contract work, education, research collaboration, or another professional
+engagement; or
+(ii) personal, noncommercial technical review.
+
+2. No open-source grant
+
+This software is source available but is not released under an open-source
+license. Except for the narrow permission in Section 1 and rights necessarily
+provided by GitHub's applicable Terms of Service, no rights are granted.
+
+3. Prohibited uses
+
+You may not, without prior written permission from the copyright holder:
+
+(a) use the software or any portion of it for commercial, production,
+revenue-generating, operational, or customer-facing purposes;
+(b) host or provide the software as a service;
+(c) copy, publish, sublicense, sell, redistribute, or transfer the software or
+substantial portions of it outside GitHub's built-in public repository and
+forking functions;
+(d) create or distribute derivative works, competing implementations, or
+products substantially based on the software;
+(e) incorporate the software into another product, service, dataset, model,
+benchmark corpus, or training corpus;
+(f) remove or obscure copyright, license, attribution, scope, or proprietary
+notices; or
+(g) represent the software as production-ready, safety-certified, or suitable
+for autonomous real-world decision making.
+
+4. No patent, trademark, or trade-secret license
+
+No patent license, trademark license, right to the Aegis Sentinel name, or
+right to undisclosed implementations, policies, datasets, calibration methods,
+validation corpora, or other confidential material is granted.
+
+5. Contributions
+
+No right to submit or merge contributions is implied. Any contribution requires
+a separate written agreement before acceptance.
+
+6. Termination
+
+This permission terminates automatically upon violation of these terms. Upon
+termination, you must stop using and delete copies made under this license,
+except to the extent retention is required by law.
+
+7. Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, RELIABILITY, OR SAFETY. IN NO
+EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE.
+
+8. Contact
+
+Commercial licensing, hosted demonstrations, collaboration, or other permissions
+require prior written authorization from Edgar Fu through the contact methods on
+his GitHub profile.
