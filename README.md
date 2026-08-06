@@ -1,5 +1,6 @@
 # Aegis Sentinel — Public Showcase
 
+[View the Aegis Sentinel Engineering Portfolio (PDF)](docs/Aegis_Sentinel_Engineering_Portfolio.pdf)
 [![Java 17](https://img.shields.io/badge/Java-17-2f74c0)](https://adoptium.net/)
 [![Verification](https://github.com/Edgar-Fu/aegis-sentinel-showcase/actions/workflows/verify.yml/badge.svg)](https://github.com/Edgar-Fu/aegis-sentinel-showcase/actions/workflows/verify.yml)
 [![License: Evaluation Only](https://img.shields.io/badge/license-evaluation--only-8b5cf6)](LICENSE)
